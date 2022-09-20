@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:prueba_fibonacci/state/state.dart';
 import 'package:prueba_fibonacci/utils/fibonacci_generator.dart';
 import 'package:prueba_fibonacci/widgets/array_widget.dart';
+import 'package:prueba_fibonacci/widgets/default_button.dart';
 import 'package:prueba_fibonacci/widgets/dialog_widget.dart';
 import 'package:prueba_fibonacci/widgets/text_with_input_widget.dart';
 
@@ -190,36 +191,5 @@ class _FibonacciScreenState extends State<FibonacciScreen> {
             ),
           ]),
         ));
-  }
-}
-
-class DefaultButtonWidget extends StatelessWidget {
-  const DefaultButtonWidget({
-    Key? key,
-    required this.text,
-    required this.onPressed,
-  }) : super(key: key);
-  final String text;
-  final void Function()? onPressed;
-
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox(
-      width: 250,
-      height: 50,
-      child: ElevatedButton(
-        style: ElevatedButton.styleFrom(
-          shadowColor: Colors.grey,
-          elevation: 7,
-        ),
-        onPressed: onPressed,
-        child: Text(
-          "$text",
-          style: TextStyle(
-            color: Colors.white,
-          ),
-        ),
-      ),
-    );
   }
 }
