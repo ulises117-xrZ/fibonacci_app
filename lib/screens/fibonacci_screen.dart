@@ -27,7 +27,6 @@ class _FibonacciScreenState extends State<FibonacciScreen> {
   TextEditingController latestValueController = TextEditingController();
 
   void generarMatriz() {
-    print("Hola mami");
     if (initialValueController.text.isEmpty ||
         latestValueController.text.isEmpty) {
       AppDialogos().alertaPrimaria(context, "Error", "Debes escoger 2 numeros");
@@ -57,6 +56,7 @@ class _FibonacciScreenState extends State<FibonacciScreen> {
       }
       print(subListFib);
       listaFibonacci.value = subListFib;
+      sumaMatriz.value = listaFibonacci.value.reduce((a, b) => a + b);
       handleEnableButtons();
     } else {
       if (subListFib.length > 9) {
@@ -81,6 +81,17 @@ class _FibonacciScreenState extends State<FibonacciScreen> {
     handleDisableButtons();
     handleCleanMatriz();
     sumaMatriz.value = 0;
+  }
+
+  void rotarMatriz() {
+    List<int> parte1 = listaFibonacci.value.sublist(0, 3);
+    List<int> parte2 = listaFibonacci.value.sublist(3, 6);
+    List<int> parte3 = listaFibonacci.value.sublist(6, 9);
+    List<int> objRotado = [];
+    for (int i = 0; i < 3; i++) {
+      objRotado.addAll([parte3[i], parte2[i], parte1[i]]);
+    }
+    listaFibonacci.value = objRotado;
   }
 
   @override
@@ -156,7 +167,8 @@ class _FibonacciScreenState extends State<FibonacciScreen> {
                         return Column(children: [
                           DefaultButtonWidget(
                             text: "Rotar a la derecha",
-                            onPressed: buttonsActives.value ? () {} : null,
+                            onPressed:
+                                buttonsActives.value ? rotarMatriz : null,
                           ),
                           const SizedBox(
                             height: 20,
